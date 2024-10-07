@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Question {{ q_num }}</h1>
+    <form method="POST">
+        <p>{{ question.question }}</p>
+        {% for option in question.options %}
+            <div>
+                <input type="radio" id="{{ option }}" name="answer" value="{{ option[0] }}" required>
+                <label for="{{ option }}">{{ option }}</label>
+            </div>
+        {% endfor %}
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

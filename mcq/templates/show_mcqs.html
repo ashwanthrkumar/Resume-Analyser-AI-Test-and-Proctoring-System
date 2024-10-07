@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Technical Test</title>
+</head>
+<body>
+    <h1>Generated MCQs</h1>
+    <form action="/evaluate_results" method="post">
+        {% for mcq in mcq_list %}
+            <div>
+                <p>{{ mcq.question }}</p>
+                {% for option in mcq.options %}
+                    <input type="radio" id="mcq_{{ loop.index0 }}_option_{{ loop.index }}" name="mcq_{{ loop.index0 }}" value="{{ option }}" required>
+                    <label for="mcq_{{ loop.index0 }}_option_{{ loop.index }}">{{ option }}</label><br>
+                {% endfor %}
+                <input type="hidden" name="correct_answers" value="{{ mcq.correct_answer }}">
+            </div>
+            <hr>
+        {% endfor %}
+        <button type="submit">Submit Answers</button>
+    </form>
+</body>
+</html>

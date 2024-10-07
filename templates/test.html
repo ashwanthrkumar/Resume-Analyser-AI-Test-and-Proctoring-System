@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Test</title>
+</head>
+<body>
+    <h1>Question {{ question_index + 1 }}</h1>
+    <p>{{ question }}</p>
+    <form method="POST">
+        {% for option in options %}
+            <label>
+                <input type="radio" name="option" value="{{ option.index }}" required>
+                {{ option.option }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

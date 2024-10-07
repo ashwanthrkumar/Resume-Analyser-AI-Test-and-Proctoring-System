@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz</title>
+</head>
+<body>
+    <h1>Question {{ question_index + 1 }} of {{ questions|length }}</h1>
+    <form method="POST">
+        <h2>{{ question }}</h2>
+        {% for option in options %}
+            {% set option_index = loop.index0 %}
+            <input type="radio" id="option{{ option_index }}" name="option" value="{{ option_index }}">
+            <label for="option{{ option_index }}">{{ option }}</label><br>
+        {% endfor %}
+        <br>
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

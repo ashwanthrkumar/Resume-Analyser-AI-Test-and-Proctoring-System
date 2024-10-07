@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Test</title>
+    <script>
+        var inactivityTimer;
+
+        function startInactivityTimer() {
+            inactivityTimer = setTimeout(function() {
+                alert("You have been inactive for too long. Please continue the test without interruptions.");
+                // Optionally, redirect or handle the inactivity as needed
+            }, 10000); // 5 minutes inactivity timeout (adjust as necessary)
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            startInactivityTimer();
+        }
+
+        // Start the inactivity timer on page load
+        startInactivityTimer();
+
+        // Reset the timer on user interaction (e.g., button click)
+        document.addEventListener("click", function() {
+            resetInactivityTimer();
+        });
+
+        // Reset the timer on form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            resetInactivityTimer();
+        });
+    </script>
+</head>
+<body>
+    <h1>Question {{ question_index + 1 }}</h1>
+    <p>{{ question }}</p>
+    <form method="POST">
+        {% for option in options %}
+            <label>
+                <input type="radio" name="option" value="{{ option.index }}" required>
+                {{ option.option }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>
